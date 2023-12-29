@@ -1,10 +1,10 @@
 // pages/Room.js
 import { useEffect } from 'react';
-// import {ZegoUIKitPrebuilt} from '@zegocloud/zego-uikit-prebuilt';
+const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
 
 const Room = () => {
   useEffect(() => {
-    import("@zegocloud/zego-uikit-prebuilt").then(({ ZegoUIKitPrebuilt }) => {
+    // import("@zegocloud/zego-uikit-prebuilt").then(({ ZegoUIKitPrebuilt }) => {
         function getUrlParams(url) {
           let urlStr = url.split('?')[1];
           const urlSearchParams = new URLSearchParams(urlStr);
@@ -42,7 +42,7 @@ const Room = () => {
       layout: "Auto",
       showLayoutButton: false,
     });
-  })
+  // })
   }, []);
 
   return (
