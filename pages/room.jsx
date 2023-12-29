@@ -22,7 +22,7 @@ const Room = () => {
 
     const zp = ZegoUIKitPrebuilt.create(kitToken);
     zp.joinRoom({
-      container: document.querySelector("#root"),
+      container: document.querySelector("#rootRoom"),
       sharedLinks: [{
         name: 'Personal link',
         url: window.location.protocol + '//' + window.location.host + window.location.pathname + '?roomID=' + roomID,
@@ -46,7 +46,7 @@ const Room = () => {
   }, []);
 
   return (
-    <div id="root" className="myCallContainer"></div>
+    <div id="rootRoom" className="myCallContainer"></div>
   );
 };
 
