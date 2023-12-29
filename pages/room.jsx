@@ -15,8 +15,8 @@ const Room = () => {
     const roomID = getUrlParams(window.location.href)['roomID'] || (Math.floor(Math.random() * 10000) + "");
     const userID = Math.floor(Math.random() * 10000) + "";
     const userName = "userName" + userID;
-    const appID = 1484647939;
-    // const appID = 1051992223;
+    // const appID = 1484647939;
+    const appID = 1051992223;
     const serverSecret = "97fd45081621ff415c72452e3dd5adbd";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
 
