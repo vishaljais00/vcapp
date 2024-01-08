@@ -1,10 +1,10 @@
 // Import necessary modules and styles
 import React, { useEffect, useState } from 'react';
-const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
-const { ZIM } = await import("zego-zim-web");
+
 
 const Call = () => {
   let zp;
+  let ZegoUIKitPrebuiltLet;
     const [userID, setUserId] = useState('')
     const [receverId, setReaceverId] = useState('')
 
@@ -34,7 +34,9 @@ const Call = () => {
     }
   // Function to initialize ZegoUIKit
   async function init() {
-
+    const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
+    ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt
+    const { ZIM } = await import("zego-zim-web");
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
@@ -68,7 +70,7 @@ const Call = () => {
     // send call invitation
     zp.sendCallInvitation({
       callees: users,
-      callType: ZegoUIKitPrebuilt.InvitationTypeVideoCall,
+      callType: ZegoUIKitPrebuiltLet.InvitationTypeVideoCall,
       timeout: 60,
     })
       .then((res) => {
