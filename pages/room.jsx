@@ -21,9 +21,7 @@ const Room = () => {
     // const appID = 1484647939;
     const appID = 1051992223;
     const serverSecret = "97fd45081621ff415c72452e3dd5adbd";
-    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
-      appID, serverSecret, roomID, userID, userName
-      );
+    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
 
     const zp = ZegoUIKitPrebuilt.create(kitToken);
     zp.joinRoom({
