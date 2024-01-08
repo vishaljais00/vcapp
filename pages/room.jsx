@@ -45,7 +45,6 @@ const Room = () => {
         showTextChat: true,
         showUserList: false,
         maxUsers: 2,
-        layout: "Grid",
         showLayoutButton: true,
         showPreJoinView: false,
       });
