@@ -45,10 +45,11 @@ const Call = () => {
       userID
     );
 
-    const KitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
+    const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         1051992223, // You need to replace the appid with your own appid
     //   252984006, // You need to replace the appid with your own appid
-      token,
+    "97fd45081621ff415c72452e3dd5adbd",
+    //   token,
       null,
       userID,
       userName
