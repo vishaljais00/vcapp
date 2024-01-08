@@ -46,7 +46,7 @@ const Room = () => {
         showUserList: false,
         maxUsers: 2,
         layout: "Grid",
-        showLayoutButton: false,
+        showLayoutButton: true,
         showPreJoinView: false,
       });
     }
