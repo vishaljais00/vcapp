@@ -4,16 +4,6 @@ import React, { useEffect, useState } from 'react';
 const VideoCallComponent = () => {
   let zp;
 
-  function generateToken(tokenServerUrl, userID) {
-    // Obtain the token interface provided by the App Server
-    return fetch(
-      `${tokenServerUrl}/access_token?userID=${userID}&expired_ts=7200`,
-      {
-        method: 'GET',
-      }
-    ).then((res) => res.json());
-  }
-  
   function randomID(len) {
     let result = '';
     if (result) return result;
@@ -34,10 +24,7 @@ const VideoCallComponent = () => {
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
-    const { token } = await generateToken(
-      'https://nextjs-token-callinvitation.vercel.app/api',
-      userID
-    );
+  
     const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         1051992223, // You need to replace the appid with your own appid
         "97fd45081621ff415c72452e3dd5adbd",
