@@ -68,7 +68,7 @@ const Call = () => {
     // send call invitation
     zp.sendCallInvitation({
       callees: users,
-      callType: zp.InvitationTypeVideoCall,
+      callType: ZegoUIKitPrebuilt.InvitationTypeVideoCall,
       timeout: 60,
     })
       .then((res) => {
