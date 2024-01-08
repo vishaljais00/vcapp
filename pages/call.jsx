@@ -45,15 +45,21 @@ const Call = () => {
       userID
     );
 
-    const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
-        1051992223, // You need to replace the appid with your own appid
+    const KitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
+      252984006, // You need to replace the appid with your own appid
     //   252984006, // You need to replace the appid with your own appid
-    "97fd45081621ff415c72452e3dd5adbd",
-    //   token,
+      token,
       null,
       userID,
       userName
     );
+    // const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+    //     1051992223, // You need to replace the appid with your own appid
+    // "97fd45081621ff415c72452e3dd5adbd",
+    //   null,
+    //   userID,
+    //   userName
+    // );
     const zp = ZegoUIKitPrebuilt.create(KitToken);
     // add plugin
     zp.addPlugins({ ZIM });
