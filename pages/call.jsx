@@ -1,5 +1,7 @@
 // Import necessary modules and styles
 import React, { useEffect, useState } from 'react';
+const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
+const { ZIM } = await import("zego-zim-web");
 
 const Call = () => {
   let zp;
@@ -32,8 +34,7 @@ const Call = () => {
     }
   // Function to initialize ZegoUIKit
   async function init() {
-    const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
-    const { ZIM } = await import("zego-zim-web");
+
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
