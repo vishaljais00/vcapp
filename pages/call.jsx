@@ -103,6 +103,11 @@ const Call = () => {
         
         callees: users,
         callType: ZegoUIKitPrebuiltLets,
+        notificationConfig :{
+            resourcesID:'zegouikit_call',
+            title:'Call invitation', 
+            message:'Incoming video call...'
+        },
         timeout: 60,
       })
         .then((res) => {
