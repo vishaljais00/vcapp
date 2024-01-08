@@ -63,26 +63,34 @@ const Call = () => {
       alert('userID cannot be empty!!');
       return;
     }
-    const users = callee.split(',').map((id) => ({
-      userID: id.trim(),
-      userName: 'user_' + id,
-    }));
-    // send call invitation
-    zp.sendCallInvitation({
-      callees: users,
-      callType: ZegoUIKitPrebuiltLet,
-      timeout: 60,
-    })
-      .then((res) => {
-        console.warn(res);
-        if (res.errorInvitees.length) {
-          alert('The user dose not exist or is offline.');
-        }
+  
+    // Check if zp is defined before calling sendCallInvitation
+    if (zp) {
+      const users = callee.split(',').map((id) => ({
+        userID: id.trim(),
+        userName: 'user_' + id,
+      }));
+  
+      // send call invitation
+      zp.sendCallInvitation({
+        callees: users,
+        callType: ZegoUIKitPrebuiltLet,
+        timeout: 60,
       })
-      .catch((err) => {
-        console.error(err);
-      });
+        .then((res) => {
+          console.warn(res);
+          if (res.errorInvitees.length) {
+            alert('The user does not exist or is offline.');
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      console.error('ZegoUIKit is not properly initialized.');
+    }
   }
+  
 
   // Initialize ZegoUIKit on component mount
   useEffect(() => {
