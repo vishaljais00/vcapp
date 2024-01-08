@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 
 const Call = () => {
-  let zp;
-  let ZegoUIKitPrebuiltLet;
+  let zps;
+  let ZegoUIKitPrebuiltLets;
     const [userID, setUserId] = useState('')
     const [receverId, setReaceverId] = useState('')
 
@@ -36,7 +36,7 @@ const Call = () => {
   async function init() {
     const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
     const { ZIM } = await import("zego-zim-web");
-    ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall
+    const ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
@@ -52,9 +52,14 @@ const Call = () => {
         userID,
         userName
     );
-    zp = ZegoUIKitPrebuilt.create(KitToken);
+    const zp = ZegoUIKitPrebuilt.create(KitToken);
     // add plugin
     zp.addPlugins({ ZIM });
+
+    return {
+        zp,
+        ZegoUIKitPrebuiltLet
+    }
   }
 
   function handleSend() {
@@ -64,17 +69,18 @@ const Call = () => {
       return;
     }
   
+    console.log(zps, ZegoUIKitPrebuiltLets)
     // Check if zp is defined before calling sendCallInvitation
-    if (zp) {
+    if (zps) {
       const users = callee.split(',').map((id) => ({
         userID: id.trim(),
         userName: 'user_' + id,
       }));
   
       // send call invitation
-      zp.sendCallInvitation({
+      zps.sendCallInvitation({
         callees: users,
-        callType: ZegoUIKitPrebuiltLet,
+        callType: ZegoUIKitPrebuiltLets,
         timeout: 60,
       })
         .then((res) => {
@@ -99,7 +105,10 @@ const Call = () => {
         setUserId(randomID(5))
         return
     }else{
-        init();
+       const {zp , ZegoUIKitPrebuiltLet} = init();
+       zps = zp
+       ZegoUIKitPrebuiltLets = ZegoUIKitPrebuiltLet
+       console.log(zps, ZegoUIKitPrebuiltLets)
     }
   }, [userID]);
 
