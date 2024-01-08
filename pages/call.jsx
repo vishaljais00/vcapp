@@ -47,19 +47,11 @@ const Call = () => {
 
     const KitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
       252984006, // You need to replace the appid with your own appid
-    //   252984006, // You need to replace the appid with your own appid
       token,
       null,
       userID,
       userName
     );
-    // const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
-    //     1051992223, // You need to replace the appid with your own appid
-    // "97fd45081621ff415c72452e3dd5adbd",
-    //   null,
-    //   userID,
-    //   userName
-    // );
     const zp = ZegoUIKitPrebuilt.create(KitToken);
     // add plugin
     zp.addPlugins({ ZIM });
@@ -84,8 +76,8 @@ const Call = () => {
             showPreJoinView: false,
           }
         },
-        enableNotifyWhenAppRunningInBackgroundOrQuit: true,
       },
+      
       )
       
   }
@@ -111,11 +103,6 @@ const Call = () => {
         
         callees: users,
         callType: ZegoUIKitPrebuiltLets,
-        notificationConfig :{
-            resourcesID:'zegouikit_call',
-            title:'Call invitation', 
-            message:'Incoming video call...'
-        },
         timeout: 60,
       })
         .then((res) => {
