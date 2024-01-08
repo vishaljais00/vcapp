@@ -9,7 +9,7 @@ const Call = () => {
     const [receverId, setReaceverId] = useState('')
 
 
-    function generateToken(tokenServerUrl, userID) {
+    async function generateToken(tokenServerUrl, userID) {
         // Obtain the token interface provided by the App Server
         return fetch(
           `${tokenServerUrl}/access_token?userID=${userID}&expired_ts=7200`,
@@ -35,8 +35,8 @@ const Call = () => {
   // Function to initialize ZegoUIKit
   async function init() {
     const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
-    ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt
     const { ZIM } = await import("zego-zim-web");
+    ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
@@ -70,7 +70,7 @@ const Call = () => {
     // send call invitation
     zp.sendCallInvitation({
       callees: users,
-      callType: ZegoUIKitPrebuiltLet.InvitationTypeVideoCall,
+      callType: ZegoUIKitPrebuiltLet,
       timeout: 60,
     })
       .then((res) => {
