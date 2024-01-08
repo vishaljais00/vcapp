@@ -76,7 +76,10 @@ const Call = () => {
             showPreJoinView: false,
           }
         },
-      })
+        enableNotifyWhenAppRunningInBackgroundOrQuit: true,
+      },
+      )
+      
   }
 
 
