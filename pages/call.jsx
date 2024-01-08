@@ -1,26 +1,27 @@
 // Import necessary modules and styles
 import React, { useEffect, useState } from 'react';
 
-const VideoCallComponent = () => {
+const Call = () => {
   let zp;
+    const [userID, setUserId] = useState('')
+    const [receverId, setReaceverId] = useState('')
 
-  function randomID(len) {
-    let result = '';
-    if (result) return result;
-    var chars = '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP',
-      maxPos = chars.length,
-      i;
-    len = len || 5;
-    for (i = 0; i < len; i++) {
-      result += chars.charAt(Math.floor(Math.random() * maxPos));
+    function randomID(len) {
+        let result = '';
+        if (result) return result;
+        var chars = '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP',
+        maxPos = chars.length,
+        i;
+        len = len || 5;
+        for (i = 0; i < len; i++) {
+        result += chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return result;
     }
-    return result;
-  }
   // Function to initialize ZegoUIKit
   async function init() {
     const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
     const { ZIM } = await import("zego-zim-web");
-    const userID = randomID(5);
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
@@ -38,7 +39,7 @@ const VideoCallComponent = () => {
   }
 
   function handleSend() {
-    const callee = document.querySelector('#userID').value;
+    const callee = receverId;
     if (!callee) {
       alert('userID cannot be empty!!');
       return;
@@ -66,18 +67,24 @@ const VideoCallComponent = () => {
 
   // Initialize ZegoUIKit on component mount
   useEffect(() => {
-    init();
-  }, []);
+    
+    if(userID == ""){
+        setUserId(randomID(5))
+        return
+    }else{
+        init();
+    }
+  }, [userID]);
 
   return (
-    <div id="app">
+    <div id="apps">
       <p>
-        my userName: <span className="name"></span>
+        my userName: <span className="name">User_{userID}</span>
       </p>
       <p>
-        my userID: <span className="id"></span>
+        my userID: <span className="id">{userID}</span>
       </p>
-      <input type="text" id="userID" placeholder="callee's userID" />
+      <input type="text" id="userID" value={receverId} onChange={(e)=>{setReaceverId(e.target.value)}} placeholder="callee's userID" />
       <button className="videoCall" onClick={() => handleSend()}>
         video call
       </button>
@@ -85,4 +92,4 @@ const VideoCallComponent = () => {
   );
 };
 
-export default VideoCallComponent;
+export default Call;
