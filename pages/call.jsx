@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 
 const Call = () => {
-  let zps;
-  let ZegoUIKitPrebuiltLets;
+    const [zps, setZps] = useState(null);
+    const [ZegoUIKitPrebuiltLets, setZegoUIKitPrebuiltLets] = useState(null);  
     const [userID, setUserId] = useState('')
     const [receverId, setReaceverId] = useState('')
 
@@ -34,33 +34,32 @@ const Call = () => {
     }
   // Function to initialize ZegoUIKit
   async function init() {
-    const { ZegoUIKitPrebuilt } = await import("@zegocloud/zego-uikit-prebuilt");
-    const { ZIM } = await import("zego-zim-web");
-    const ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall
+    const { ZegoUIKitPrebuilt } = await import('@zegocloud/zego-uikit-prebuilt');
+    const { ZIM } = await import('zego-zim-web');
+    const ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall;
     const userName = 'user_' + userID;
     document.querySelector('.name').innerHTML = userName;
     document.querySelector('.id').innerHTML = userID;
     const { token } = await generateToken(
-        'https://nextjs-token-callinvitation.vercel.app/api',
-        userID
-      );
-  
+      'https://nextjs-token-callinvitation.vercel.app/api',
+      userID
+    );
+
     const KitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
-        252984006, // You need to replace the appid with your own appid
-        token,
-        null,
-        userID,
-        userName
+      252984006, // You need to replace the appid with your own appid
+      token,
+      null,
+      userID,
+      userName
     );
     const zp = ZegoUIKitPrebuilt.create(KitToken);
     // add plugin
     zp.addPlugins({ ZIM });
 
-    return {
-        zp,
-        ZegoUIKitPrebuiltLet
-    }
+    setZps(zp);
+    setZegoUIKitPrebuiltLets(ZegoUIKitPrebuiltLet);
   }
+
 
   function handleSend() {
     const callee = receverId;
@@ -105,12 +104,12 @@ const Call = () => {
         setUserId(randomID(5))
         return
     }else{
-       const {zp , ZegoUIKitPrebuiltLet} = init();
-       zps = zp
-       ZegoUIKitPrebuiltLets = ZegoUIKitPrebuiltLet
-       console.log(zps, ZegoUIKitPrebuiltLets)
+        init();
+      
     }
   }, [userID]);
+
+  console.log('aaaaaa',zps, ZegoUIKitPrebuiltLets)
 
   return (
     <div id="apps">
