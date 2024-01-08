@@ -58,6 +58,25 @@ const Call = () => {
 
     setZps(zp);
     setZegoUIKitPrebuiltLets(ZegoUIKitPrebuiltLet);
+    zp.setCallInvitationConfig({
+        // The callback for the call invitation is accepted before joining the room (a room is used for making a call), which can be used to set up the room config. The Call Kit enables you to join the room automatically, and the room config adapts according to the specific call type (ZegoInvitationType).
+        onSetRoomConfigBeforeJoining: (callType) => {
+          return {
+            container: document.querySelector("#rootRoom"),
+            turnOnMicrophoneWhenJoining: true,
+            turnOnCameraWhenJoining: true,
+            showMyCameraToggleButton: true,
+            showMyMicrophoneToggleButton: true,
+            showAudioVideoSettingsButton: true,
+            showScreenSharingButton: false,
+            showTextChat: true,
+            showUserList: false,
+            maxUsers: 2,
+            showLayoutButton: true,
+            showPreJoinView: false,
+          }
+        },
+      })
   }
 
 
@@ -78,6 +97,7 @@ const Call = () => {
   
       // send call invitation
       zps.sendCallInvitation({
+        
         callees: users,
         callType: ZegoUIKitPrebuiltLets,
         timeout: 60,
@@ -123,6 +143,7 @@ const Call = () => {
       <button className="videoCall" onClick={() => handleSend()}>
         video call
       </button>
+      <div id="rootRoom" className="myCallContainer h-[100vh]"></div>
     </div>
   );
 };
