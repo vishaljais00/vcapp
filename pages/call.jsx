@@ -38,8 +38,6 @@ const Call = () => {
     const { ZIM } = await import('zego-zim-web');
     const ZegoUIKitPrebuiltLet = ZegoUIKitPrebuilt.InvitationTypeVideoCall;
     const userName = 'user_' + userID;
-    document.querySelector('.name').innerHTML = userName;
-    document.querySelector('.id').innerHTML = userID;
     const { token } = await generateToken(
       'https://nextjs-token-callinvitation.vercel.app/api',
       userID
